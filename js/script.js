@@ -6,17 +6,21 @@
 const countdownDisplay = document.getElementById('countdown');
 console.log(countdownDisplay);
 
-//*btn
-const btn = document.querySelector('.btn-primary');
-console.log(btn);
-
-//*lista numeri da inserire
+//*lista numeri da inserire fino allo scadere del tempo
 const numbersList = document.getElementById('numbers-list');
 console.log(numbersList);
+
+const instructions = document.getElementById('instructions');
 
 //*form da mostrare per l'inserimento e la validazione dei numeri
 const form = document.getElementById('answers-form');
 console.log(form);
+
+//*btn
+const btn = document.querySelector('.btn-primary');
+console.log(btn);
+
+//! FINE ELEMENTI DOM -------------------------------------------------!
 
 //array numeri da mostrare all'utente
 const randomNumbers = [];
@@ -37,9 +41,9 @@ for (i = 0; i < randomNumbers.length; i++) {
 }
 
 //*timer
-let timer = 30;
+let timer = 3;
 
-// Aggiorna il timer ogni secondo
+// Aggiorna il timer ogni secondo e allo scadere scompaiono i numeri
 const countdown = setInterval(() => {
   countdownDisplay.innerText = timer;  // Mostra il tempo rimanente nella console
   timer--;
@@ -47,9 +51,15 @@ const countdown = setInterval(() => {
   // Se il tempo è finito, ferma il timer e mostra un messaggio
   if (timer < 0) {
     clearInterval(countdown);
-    console.log('Tempo scaduto!');
+    numbersList.classList.add('d-none');//lista numeri da memorizzare che diventa display none allo scadere del tempo
+    form.classList.remove('d-none');
+    instructions.innerText = 'Inserisci i numeri che hai memorizzato (l\'ordine non è importante)';
   }
 }, 1000);
+
+
+
+
 
 
 
