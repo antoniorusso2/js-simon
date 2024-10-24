@@ -26,11 +26,7 @@ while (randomNumbers.length < 5) {
   randomNumbers.push(randomIntOneToFifty());
 }
 
-//aggiunta numeri generati in pagina
-
-
-
-
+//*aggiunta numeri generati in pagina
 //ciclo per creazione di 5 elementi che contengono i numeri da ricordare
 for (i = 0; i < randomNumbers.length; i++) {
   const listItem = document.createElement('li');
@@ -40,6 +36,20 @@ for (i = 0; i < randomNumbers.length; i++) {
   listItem.classList.add('list-group-item');
 }
 
+//*timer
+let timer = 30;
+
+// Aggiorna il timer ogni secondo
+const countdown = setInterval(() => {
+  countdownDisplay.innerText = timer;  // Mostra il tempo rimanente nella console
+  timer--;
+
+  // Se il tempo è finito, ferma il timer e mostra un messaggio
+  if (timer < 0) {
+    clearInterval(countdown);
+    console.log('Tempo scaduto!');
+  }
+}, 1000);
 
 
 
