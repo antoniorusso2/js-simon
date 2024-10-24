@@ -63,38 +63,43 @@ const countdown = setInterval(() => {
   }
 }, 1000);
 
-// let arrayElement;
-// for (i = 0; i < arrayElement.length; i++) {
 
-// }
-
+//***event listener start
 //confronto input con numeri mostrati al timer
 //per ogni ogni numero inserito confrontare l'uguaglianza con gli elementi dell'array
 
 //recupero valori input
 
-
-
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
+  countdownDisplay.classList.add('d-none'); //display none al countdown
+
   const nodeListValues = [];
 
+  let match = 0;//contatore numeri indovinati
 
-  for (i = 0; i < inputNum.length; i++) { //inputNum è la lista dio nodi contenente tutti i campi numbers
+  for (i = 0; i < inputNum.length; i++) { //inputNum è la lista di nodi contenente tutti i campi numbers
 
     let element = parseInt(inputNum[i].value);
     // console.log(element.value);
     nodeListValues.push(element);
-    console.log(ifIncludes(randomNumbers, element));
+    // console.log(ifIncludes(randomNumbers, element));
 
-    // if (compareNum(element, randomNumbers[i]) === true) {
-    //   console.log('numero giusto');
-    // };
+
+    if (randomNumbers.includes(element)) {
+      console.log('numero giusto');
+      match = match + 1;
+      console.log(match);
+    };
+
+    inputNum[i].value = '';//svuotamento campi dopo aver preso i dati
   }
 
-  console.log(nodeListValues);
-  // inputValues(inputNum);
+  // console.log(match);
+
+  form.classList.add('d-none');
+  instructions.innerText = `Hai indovinato ${match}`;
 });
 
 
@@ -105,19 +110,3 @@ function randomIntOneToFifty() {
   // console.log(num);
   return num;
 }
-
-//funzione per confrontare i numeri inseriti dall'utente con quelli generati all'inizio
-function ifIncludes(array, num) {
-  if (array.includes(num)) {
-    return true;
-  }
-
-  return false;
-}
-
-
-// console.log(numbersToRemember);
-// timer 30 secondi e poi i numeri scompaiono;
-//appaiono 5 input in cui l'utente inserisce i numero che ha visto precedentemente
-//il software risponde indicando quanti e quali numeri sono stati individuati correttamente
-//* non e' importante l'ordine dei numeri basta che ne inserisca il piu possibile corretti
